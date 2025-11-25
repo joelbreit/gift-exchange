@@ -9,11 +9,11 @@ function Header() {
 	const isActive = (path) => location.pathname === path;
 
 	return (
-		<nav className="bg-white shadow-sm dark:bg-slate-800">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<nav className="bg-white font-sans shadow-sm dark:bg-slate-800">
+			<div className="mx-auto max-w-5xl px-4 md:px-8">
 				<div className="flex h-16 justify-between">
 					<div className="flex items-center">
-						<div className="shrink-0 text-xl font-bold">
+						<div className="shrink-0 text-xl font-semibold">
 							Gift Exchange
 						</div>
 
@@ -21,7 +21,7 @@ function Header() {
 						<div className="hidden md:ml-6 md:flex md:space-x-8">
 							<Link
 								to="/"
-								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 									isActive("/")
 										? "border-indigo-500 text-slate-900 dark:text-white"
 										: "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-slate-300 dark:hover:text-white"
@@ -31,7 +31,7 @@ function Header() {
 							</Link>
 							<Link
 								to="/directory"
-								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 									isActive("/directory")
 										? "border-indigo-500 text-slate-900 dark:text-white"
 										: "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-slate-300 dark:hover:text-white"
@@ -41,7 +41,7 @@ function Header() {
 							</Link>
 							<Link
 								to="/about"
-								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+								className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 									isActive("/about")
 										? "border-indigo-500 text-slate-900 dark:text-white"
 										: "border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-slate-300 dark:hover:text-white"
@@ -50,26 +50,26 @@ function Header() {
 								About
 							</Link>
 						</div>
-					</div>{" "}
-					<div className="flex items-center">
-						<button className="rounded-full bg-slate-100 p-1 text-slate-500 hover:text-slate-700 dark:bg-slate-700 dark:text-slate-300 dark:hover:text-white">
+					</div>
+					<div className="flex items-center gap-2">
+						<button className="rounded-full bg-slate-100 p-1 text-slate-500 transition-all duration-150 ease-out hover:-translate-y-0.5 hover:shadow-md hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 dark:bg-slate-700 dark:text-slate-300 dark:hover:text-white">
 							<span className="sr-only">Settings</span>
-							<Settings className="h-6 w-6" />
+							<Settings className="h-5 w-5" />
 						</button>
 
 						<a
 							href="https://github.com"
-							className="ml-3 rounded-full bg-slate-100 p-1 text-slate-500 hover:text-slate-700 dark:bg-slate-700 dark:text-slate-300 dark:hover:text-white"
+							className="rounded-full bg-slate-100 p-1 text-slate-500 transition-all duration-150 ease-out hover:-translate-y-0.5 hover:shadow-md hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 dark:bg-slate-700 dark:text-slate-300 dark:hover:text-white"
 						>
 							<span className="sr-only">GitHub</span>
-							<Github className="h-6 w-6" />
+							<Github className="h-5 w-5" />
 						</a>
 
 						{/* Mobile menu button */}
 						<div className="flex items-center md:hidden">
 							<button
 								type="button"
-								className="ml-3 inline-flex items-center justify-center rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
+								className="inline-flex items-center justify-center rounded-full p-2 text-slate-500 transition-all duration-150 ease-out hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-md hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
 								onClick={() =>
 									setIsMobileMenuOpen(!isMobileMenuOpen)
 								}
@@ -98,7 +98,7 @@ function Header() {
 					<div className="space-y-1 pb-3 pt-2">
 						<Link
 							to="/"
-							className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+							className={`block border-l-4 py-2 pl-3 pr-4 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 								isActive("/")
 									? "border-indigo-500 bg-indigo-50 text-indigo-700 dark:bg-slate-700 dark:text-white"
 									: "border-transparent text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
@@ -108,7 +108,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/directory"
-							className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+							className={`block border-l-4 py-2 pl-3 pr-4 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 								isActive("/directory")
 									? "border-indigo-500 bg-indigo-50 text-indigo-700 dark:bg-slate-700 dark:text-white"
 									: "border-transparent text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
@@ -118,7 +118,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/about"
-							className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+							className={`block border-l-4 py-2 pl-3 pr-4 text-sm font-medium uppercase tracking-wide transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 ${
 								isActive("/about")
 									? "border-indigo-500 bg-indigo-50 text-indigo-700 dark:bg-slate-700 dark:text-white"
 									: "border-transparent text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
