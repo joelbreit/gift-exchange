@@ -1,0 +1,280 @@
+openapi: 3.0.3
+info:
+  title: Gift Exchange API
+  description: API for managing accounts in the Gift Exchange application
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Development server
+  - url: https://api.example.com/api
+    description: Production server
+
+paths:
+  /accounts:
+    post:
+      summary: Create a new account
+      description: Creates a new user account with the provided information
+      operationId: createAccount
+      tags:
+        - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+            example:
+              email: user@example.com
+              name: John Doe
+              password: securePassword123
+      responses:
+        '201':
+          description: Account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+              example:
+                id: "550e8400-e29b-41d4-a716-446655440000"
+                email: user@example.com
+                name: John Doe
+        '400':
+          description: Bad request - invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /accounts/{id}/password:
+    put:
+      summary: Update account password
+      description: Updates the password for an existing account
+      operationId: updatePassword
+      tags:
+        - Accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The account ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordRequest'
+            example:
+              currentPassword: oldPassword123
+              newPassword: newSecurePassword456
+      responses:
+        '200':
+          description: Password updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        '400':
+          description: Bad request - invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - current password is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /accounts/{id}/email:
+    put:
+      summary: Update account email
+      description: Updates the email address for an existing account
+      operationId: updateEmail
+      tags:
+        - Accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The account ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmailRequest'
+            example:
+              email: newemail@example.com
+      responses:
+        '200':
+          description: Email updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          description: Bad request - invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /accounts/{id}:
+    delete:
+      summary: Delete an account
+      description: Permanently deletes an account
+      operationId: deleteAccount
+      tags:
+        - Accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The account ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Account deleted successfully
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Account:
+      type: object
+      required:
+        - id
+        - email
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the account
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        email:
+          type: string
+          format: email
+          description: Email address of the account
+          example: user@example.com
+        name:
+          type: string
+          description: Full name of the account holder
+          example: John Doe
+        password:
+          type: string
+          format: password
+          description: Account password (only included in create requests, never in responses)
+          writeOnly: true
+
+    CreateAccountRequest:
+      type: object
+      required:
+        - email
+        - name
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address for the account
+          example: user@example.com
+        name:
+          type: string
+          minLength: 1
+          description: Full name of the account holder
+          example: John Doe
+        password:
+          type: string
+          format: password
+          minLength: 8
+          description: Password for the account (minimum 8 characters)
+          example: securePassword123
+
+    UpdatePasswordRequest:
+      type: object
+      required:
+        - currentPassword
+        - newPassword
+      properties:
+        currentPassword:
+          type: string
+          format: password
+          description: Current password for verification
+          example: oldPassword123
+        newPassword:
+          type: string
+          format: password
+          minLength: 8
+          description: New password (minimum 8 characters)
+          example: newSecurePassword456
+
+    UpdateEmailRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: New email address
+          example: newemail@example.com
+
+    Success:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Operation completed successfully"
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message describing what went wrong
+          example: "An error occurred"
+        code:
+          type: string
+          description: Error code for programmatic handling
+          example: "VALIDATION_ERROR"
+
