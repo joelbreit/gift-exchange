@@ -135,3 +135,17 @@ Lambda functions will use:
   - Environment: `ACCOUNTS_TABLE_NAME=gift-exchange-accounts`
   - Created: 2025-11-25
 
+### API Gateway
+- **REST API**: `gift-exchange-api`
+  - API ID: `paqt5vd0g4`
+  - Region: `us-east-1`
+  - Stage: `dev`
+  - API URL: `https://paqt5vd0g4.execute-api.us-east-1.amazonaws.com/dev`
+  - Endpoints:
+    - `POST /accounts` → `createAccount` Lambda
+    - `DELETE /accounts/{id}` → `deleteAccount` Lambda
+    - `PUT /accounts/{id}/password` → `updatePassword` Lambda
+    - `PUT /accounts/{id}/email` → `updateEmail` Lambda
+  - CORS: Enabled for all endpoints
+  - Created: 2025-11-25
+
