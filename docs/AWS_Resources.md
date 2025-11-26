@@ -86,7 +86,7 @@ functions/
 
 Lambda functions will use:
 - `ACCOUNTS_TABLE_NAME`: `gift-exchange-accounts`
-- `AWS_REGION`: `us-east-1`
+- `AWS_REGION`: Automatically set by Lambda (us-east-1)
 
 ## Created Resources
 
@@ -104,5 +104,34 @@ Lambda functions will use:
   - Policies:
     - `AWSLambdaBasicExecutionRole` (AWS managed policy)
     - `DynamoDBAccess` (inline policy for gift-exchange-accounts table)
+  - Created: 2025-11-25
+
+### Lambda
+- **Function**: `createAccount`
+  - ARN: `arn:aws:lambda:us-east-1:609406001911:function:createAccount`
+  - Runtime: `nodejs20.x`
+  - Handler: `index.handler`
+  - Environment: `ACCOUNTS_TABLE_NAME=gift-exchange-accounts`
+  - Created: 2025-11-25
+
+- **Function**: `updatePassword`
+  - ARN: `arn:aws:lambda:us-east-1:609406001911:function:updatePassword`
+  - Runtime: `nodejs20.x`
+  - Handler: `index.handler`
+  - Environment: `ACCOUNTS_TABLE_NAME=gift-exchange-accounts`
+  - Created: 2025-11-25
+
+- **Function**: `updateEmail`
+  - ARN: `arn:aws:lambda:us-east-1:609406001911:function:updateEmail`
+  - Runtime: `nodejs20.x`
+  - Handler: `index.handler`
+  - Environment: `ACCOUNTS_TABLE_NAME=gift-exchange-accounts`
+  - Created: 2025-11-25
+
+- **Function**: `deleteAccount`
+  - ARN: `arn:aws:lambda:us-east-1:609406001911:function:deleteAccount`
+  - Runtime: `nodejs20.x`
+  - Handler: `index.handler`
+  - Environment: `ACCOUNTS_TABLE_NAME=gift-exchange-accounts`
   - Created: 2025-11-25
 
