@@ -90,5 +90,11 @@ Lambda functions will use:
 
 ## Created Resources
 
-_Resources will be tracked here as they are created_
+### DynamoDB
+- **Table**: `gift-exchange-accounts`
+  - Region: `us-east-1`
+  - Primary Key: `id` (String)
+  - Billing Mode: PAY_PER_REQUEST
+  - ARN: `arn:aws:dynamodb:us-east-1:609406001911:table/gift-exchange-accounts`
+  - Created: 2025-11-25
 
