@@ -98,3 +98,11 @@ Lambda functions will use:
   - ARN: `arn:aws:dynamodb:us-east-1:609406001911:table/gift-exchange-accounts`
   - Created: 2025-11-25
 
+### IAM
+- **Role**: `gift-exchange-lambda-role`
+  - ARN: `arn:aws:iam::609406001911:role/gift-exchange-lambda-role`
+  - Policies:
+    - `AWSLambdaBasicExecutionRole` (AWS managed policy)
+    - `DynamoDBAccess` (inline policy for gift-exchange-accounts table)
+  - Created: 2025-11-25
+
