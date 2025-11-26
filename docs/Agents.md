@@ -8,7 +8,7 @@ Scripts should be idempotent bash scripts that use color output and use the AWS 
 
 AWS services used will include Lambda, DynamoDB, S3, API Gateway, and Cognito.
 
-Keep track of the AWS resources created in a file called aws_resources.md in the docs folder.
+Keep track of the AWS resources created in a file called AWS_Resources.md in the docs folder.
 
 AWS resources should be created in the us-east-1 region.
 
